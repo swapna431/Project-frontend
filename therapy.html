@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Therapy Scheduling Service</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Therapy Scheduling Service</h1>
+    <section id="start-section">
+      <button onclick="openApp()">Start Scheduling</button>
+    </section>
+    <section id="directory-section" class="hidden">
+      <h2>Select Directory</h2>
+      <button onclick="browseTherapists()">Browse Therapists</button>
+    </section>
+    <section id="browse-section" class="hidden">
+      <h2>Filter Therapists</h2>
+      <p>Filter by:</p>
+      <button onclick="filterBy('specialization')">Specialization</button>
+      <button onclick="filterBy('availability')">Availability</button>
+    </section>
+    <section id="specialization-section" class="hidden">
+      <h2>Choose Specialization</h2>
+      <select id="specialization-select">
+        <option value="anxiety">Anxiety</option>
+        <option value="depression">Depression</option>
+        <option value="Addiction">Addiction Therapy</option>
+        <option value="Rehabilitation">Rehabilitation counseling Therapy</option>
+        <option value="ptsd">PTSD</option>
+      </select>
+      <button onclick="showTherapists()">Show Therapists</button>
+    </section>
+    <section id="availability-section" class="hidden">
+      <h2>Choose Availability</h2>
+      <select id="availability-select">
+        <option value="morning">Morning</option>
+        <option value="afternoon">Afternoon</option>
+        <option value="evening">Evening</option>
+      </select>
+      <button onclick="showTherapists()">Show Therapists</button>
+    </section>
+    <section id="therapists-section" class="hidden">
+      <h2>Therapists List</h2>
+      <ul id="therapist-list"></ul>
+    </section>
+    <section id="details-section" class="hidden">
+      <h2>Therapist Details</h2>
+      <div id="therapist-details"></div>
+      <button onclick="bookAppointment()">Book Appointment</button>
+    </section>
+    <section id="appointment-section" class="hidden">
+      <h2>Appointment Confirmation</h2>
+      <p>Your appointment has been scheduled!</p>
+      <button onclick="endProcess()">End</button>
+    </section>
+    <section id="end-section" class="hidden">
+      <h2>Thank You!</h2>
+      <p>Your therapy session has been scheduled.</p>
+    </section>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
