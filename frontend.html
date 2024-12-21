@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notifications & Feedback</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    .section {
+      border: 1px solid #ccc;
+      padding: 20px;
+      border-radius: 5px;
+      margin-bottom: 20px;
+      background-color: #f9f9f9;
+    }
+    h2 {
+      color: #333;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+    }
+    input, textarea, select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="section" id="notifications">
+    <h2>Notifications</h2>
+    <p>No new alerts</p>
+    <button onclick="viewAlerts()">View Alerts</button>
+  </div>
+  <div class="section" id="alerts" style="display: none;">
+    <h2>Alerts</h2>
+    <button onclick="viewAppointments()">Upcoming Appointments</button>
+    <button onclick="viewResources()">New Resources</button>
+    <button onclick="viewCommunityUpdates()">Community Updates</button>
+  </div>
+  <div class="section">
+    <h2>Submit Feedback</h2>
+    <form id="feedbackForm">
+      <label for="feedbackType">Feedback Type</label>
+      <select id="feedbackType" required>
+        <option value="">Select...</option>
+        <option value="experience">Experience</option>
+        <option value="suggestion">Suggestion</option>
+        <option value="issue">Report an Issue</option>
+      </select>
+
+      <label for="feedbackMessage">Your Feedback</label>
+      <textarea id="feedbackMessage" rows="5" placeholder="Write your feedback here..." required></textarea>
+
+      <button type="submit">Submit Feedback</button>
+    </form>
+    <p id="feedbackResponse"></p>
+  </div>
+  <div class="section" id="appointments" style="display: none;">
+    <h2>Upcoming Appointments</h2>
+    <p>No appointments available.</p>
+  </div>
+  <div class="section" id="resources" style="display: none;">
+    <h2>New Resources</h2>
+    <p>No new resources available.</p>
+  </div>
+  <div class="section" id="communityUpdates" style="display: none;">
+    <h2>Community Updates</h2>
+    <p>No updates available.</p>
+  </div>
+
+  <script>
+    function viewAlerts() {
+      document.getElementById('alerts').style.display = 'block';
+    }
+    function viewAppointments() {
+      document.getElementById('appointments').style.display = 'block';
+      document.getElementById('alerts').style.display = 'none';
+    }
+    function viewResources() {
+      document.getElementById('resources').style.display = 'block';
+      document.getElementById('alerts').style.display = 'none';
+    }
+    function viewCommunityUpdates() {
+      document.getElementById('communityUpdates').style.display = 'block';
+      document.getElementById('alerts').style.display = 'none';
+    }
+    document.getElementById('feedbackForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const feedbackType = document.getElementById('feedbackType').value;
+      const feedbackMessage = document.getElementById('feedbackMessage').value;
+
+      if (feedbackType && feedbackMessage) {
+        document.getElementById('feedbackResponse').textContent = 'Thank you for your feedback!';
+        document.getElementById('feedbackForm').reset();
+      } else {
+        alert('Please fill out all fields.');
+      }
+    });
+  </script>
+
+</body>
+</html>
+
+
