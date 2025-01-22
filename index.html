@@ -1,0 +1,53 @@
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mood Tracking & Meditation Service</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <h1>Mood Tracking & Meditation Service</h1>
+    </header>
+
+    <!-- Mood Tracking Section -->
+    <section id="mood-section" class="container">
+        <h2>Log Your Mood</h2>
+        <form id="mood-form">
+            <label>Select Your Mood:</label>
+            <select id="mood-select" required>
+                <option value="" disabled selected>Select your mood</option>
+                <option value="Happy">Happy</option>
+                <option value="Sad">Sad</option>
+                <option value="Angry">Angry</option>
+                <option value="Anxious">Anxious</option>
+                <option value="Excited">Excited</option>
+                <option value="Neutral">Neutral</option>
+            </select>
+
+            <label>Add a Reflection (Optional):</label>
+            <textarea id="reflection" placeholder="Write your thoughts here..."></textarea>
+
+            <button type="button" onclick="saveMood()">Save Entry</button>
+        </form>
+        <div id="feedback-message"></div>
+    </section>
+
+    <!-- Meditation Section -->
+    <section id="meditation-section" class="container" style="display:none;">
+        <h2>Meditation Resources</h2>
+        <p>Choose a meditation technique to help you relax:</p>
+        <button onclick="playAudio()">Play Guided Audio</button>
+        <div id="audio-feedback"></div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>Thank you for using our service!</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

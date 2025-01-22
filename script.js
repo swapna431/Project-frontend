@@ -1,68 +1,51 @@
-const therapists = [
-    { name: 'Dr. Smith', specialization: 'anxiety', availability: 'morning', phno: '***'},
-    { name: 'Dr. Johnson', specialization: 'depression', availability: 'afternoon', phno: '***'},
-    { name: 'Dr. Williams', specialization: 'Addiction', availability: 'evening', phno: '***'},
-    { name: 'Dr. vijay', specialization: 'Rehabilitation', availability: 'evening', phno: '***'},
-    { name: 'Dr. Brown', specialization: 'ptsd', availability: 'morning', phno: '***'}
-  ];
-  
-  let filteredTherapists = [];
-  
-  function openApp() {
-    document.getElementById('start-section').classList.add('hidden');
-    document.getElementById('directory-section').classList.remove('hidden');
-  }
-  
-  function browseTherapists() {
-    document.getElementById('directory-section').classList.add('hidden');
-    document.getElementById('browse-section').classList.remove('hidden');
-  }
-  
-  function filterBy(criteria) {
-    document.getElementById('browse-section').classList.add('hidden');
-    if (criteria === 'specialization') {
-      document.getElementById('specialization-section').classList.remove('hidden');
-    } else {
-      document.getElementById('availability-section').classList.remove('hidden');
+function saveMood() {
+    const moodSelect = document.getElementById("mood-select");
+    const reflection = document.getElementById("reflection");
+    const feedbackMessage = document.getElementById("feedback-message");
+
+    if (!moodSelect.value) {
+        showError("Please select a mood.");
+        return;
     }
-  }
-  
-  function showTherapists() {
-    let selectedValue;
-    if (!document.getElementById('specialization-section').classList.contains('hidden')) {
-      selectedValue = document.getElementById('specialization-select').value;
-      filteredTherapists = therapists.filter(t => t.specialization === selectedValue);
-      document.getElementById('specialization-section').classList.add('hidden');
-    } else {
-      selectedValue = document.getElementById('availability-select').value;
-      filteredTherapists = therapists.filter(t => t.availability === selectedValue);
-      document.getElementById('availability-section').classList.add('hidden');
-    }
-  
-    const list = document.getElementById('therapist-list');
-    list.innerHTML = '';
-    filteredTherapists.forEach((therapist, index) => {
-      const li = document.createElement('li');
-      li.textContent = therapist.name;
-      li.onclick = () => viewDetails(index);
-      list.appendChild(li);
-    });
-  
-    document.getElementById('therapists-section').classList.remove('hidden');
-  }
-    function viewDetails(index) {
-    const therapist = filteredTherapists[index];
-    document.getElementById('therapists-section').classList.add('hidden');
-    document.getElementById('therapist-details').textContent = `Name: ${therapist.name}, Specialization: ${therapist.specialization}, Availability: ${therapist.availability},phno: ${therapist.phno}`;
-    document.getElementById('details-section').classList.remove('hidden');
-  }
-  
-  function bookAppointment() {
-    document.getElementById('details-section').classList.add('hidden');
-    document.getElementById('appointment-section').classList.remove('hidden');
-  }
-    function endProcess() {
-    document.getElementById('appointment-section').classList.add('hidden');
-    document.getElementById('end-section').classList.remove('hidden');
-  }
-  
+
+    const moodEntry = {
+        mood: moodSelect.value,
+        reflection: reflection.value || "No reflection",
+        timestamp: new Date().toLocaleString(),
+    };
+
+    // Display Confirmation
+    feedbackMessage.innerHTML = `
+        <p>✅ Mood Entry Saved Successfully!</p>
+        <p><strong>Mood:</strong> ${moodEntry.mood}</p>
+        <p><strong>Reflection:</strong> ${moodEntry.reflection}</p>
+        <p><strong>Timestamp:</strong> ${moodEntry.timestamp}</p>
+    `;
+
+    // Proceed to Meditation Section
+    setTimeout(() => {
+        document.getElementById("mood-section").style.display = "none";
+        document.getElementById("meditation-section").style.display = "block";
+    }, 1500);
+}
+
+// Play Meditation Audio
+function playAudio() {
+    const audioFeedback = document.getElementById("audio-feedback");
+    const meditationAudio = new Audio("https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3");
+
+    meditationAudio.play();
+
+    audioFeedback.innerHTML = "🎧 Playing Guided Meditation Audio... Relax and enjoy!";
+   
+    meditationAudio.onended = function () {
+        audioFeedback.innerHTML = "✅ Audio Completed! Thank you for listening.";
+        audioFeedback.style.color = "blue";
+    };
+}
+
+// Show Error
+function showError(message) {
+    const feedbackMessage = document.getElementById("feedback-message");
+    feedbackMessage.innerHTML = `<p style="color: red;">❌ ${message}</p>`;
+}
